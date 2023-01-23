@@ -1,9 +1,10 @@
 const router = require("express").Router();
 
 const quoteSchema = require("../models/Quote");
-const { route } = require("./Auth");
 
-router.get("/getQuotes", async (req,res) => {
+const {validateAdmin} = require("../middleware/Auth")
+
+router.get("/getQuotes", validateAdmin, async (req,res) => {
     try{
         const allQuotes = await quoteSchema.find();
         res.status(200).json(allQuotes)
@@ -13,7 +14,7 @@ router.get("/getQuotes", async (req,res) => {
     }
 })
 
-router.post("/addQuote", async (req,res) => {
+router.post("/addQuote",validateAdmin, async (req,res) => {
     try{
         const quoteInfo = req.body;
         const newQuote = new quoteSchema({
@@ -27,7 +28,7 @@ router.post("/addQuote", async (req,res) => {
     }
 })
 
-router.put("/editQuote/:id", async (req,res) => {
+router.put("/editQuote/:id",validateAdmin, async (req,res) => {
     try{
         const quoteInfo = req.body
         await quoteSchema.findByIdAndUpdate(req.params.id, 
@@ -42,7 +43,7 @@ router.put("/editQuote/:id", async (req,res) => {
     }
 })
 
-router.delete("/deleteQuote/:id", async (req,res) => {
+router.delete("/deleteQuote/:id", validateAdmin, async (req,res) => {
     try{
         await quoteSchema.findByIdAndDelete(req.params.id)
         res.status(200).json("Quote has been deleted")
