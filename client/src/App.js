@@ -1,11 +1,11 @@
 
-import Button from 'react-bootstrap/Button';
+import NavbarOne from './components/navbar/NavbarOne';
+import './App.css'
 
 function App() {
   return (
     <div className="App">
-      <h1>New Login System On The Way</h1>
-      <Button varient="Primary">Hi</Button>
+      <NavbarOne/>
     </div>
   );
 }
