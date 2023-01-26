@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema(
             type: String
         },
         image: {
-            type: Buffer
+            type: String
         },
         password: {
             type: String
