@@ -9,6 +9,7 @@ import {
 import UserPage from './pages/userPages/UserPage';
 import AdminPage from './pages/adminPages/AdminPage';
 
+
 const router = createBrowserRouter([
   {
     element: (
@@ -16,7 +17,7 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "",
+        path: "/",
         element: (
           <LoginRegister/>
         ),
