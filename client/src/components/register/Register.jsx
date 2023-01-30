@@ -8,18 +8,16 @@ import FileBase64 from 'react-file-base64';
 import Alert from 'react-bootstrap/Alert';
 
 import './Register.css'
-import defaultPP from '../../assets/defaultPP.png'
 import { registerUser } from '../../services/Register';
 
 const Register = () => {
 
-  const [image, setImage] = useState(defaultPP);
   const [newUser, setNewUser] = useState({
     username: "",
     email: "",
     password: "",
     confirmPassword: "",
-    image: image
+    image: ""
   });
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
@@ -47,6 +45,9 @@ const Register = () => {
     if (values.password !== values.confirmPassword) {
       errors.confirmPassword = "Passwords do not match!"
     }
+    if (values.image.length >= 10000) {
+      errors.image = "Choose Smaller Image!"
+    }
     return errors;
   }
 
@@ -57,6 +58,7 @@ const Register = () => {
   }
 
    useEffect(() => {
+    console.log(newUser.image)
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       registerUser(newUser).then((result)=>{
         setRegisterResult(result.data)
@@ -111,15 +113,17 @@ const Register = () => {
         <Form.Group controlId="formFile" className="mb-3">
           <Form.Text className='m-1'>Choose Profile Picture</Form.Text>
           <FileBase64 type="file" multiple={false} onDone={
-            (file) => setImage(file.base64)
+            file => setNewUser({...newUser, image: file.base64})
           }/>
         </Form.Group>
+        <p style={{color: 'red', margin: '2px'}}>{formErrors.image}</p>
       </Col>
 
       <Col className='imageColStyle' md='6'>
           <div className='imageContainer'>
-            <Image className='imageStyle' rounded alt='pp' src={image} />
+            <Image className='imageStyle' rounded alt='pp' src={newUser.image} />
           </div>
+          
       </Col>
 
     </Row>
