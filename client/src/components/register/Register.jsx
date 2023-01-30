@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Image from 'react-bootstrap/Image';
 import FileBase64 from 'react-file-base64';
 import Alert from 'react-bootstrap/Alert';
+import PersonIcon from '@mui/icons-material/Person';
 
 import './Register.css'
 import { registerUser } from '../../services/Register';
@@ -45,7 +46,7 @@ const Register = () => {
     if (values.password !== values.confirmPassword) {
       errors.confirmPassword = "Passwords do not match!"
     }
-    if (values.image.length >= 10000) {
+    if (values.image.length >= 5000) {
       errors.image = "Choose Smaller Image!"
     }
     return errors;
@@ -111,7 +112,7 @@ const Register = () => {
 
       <Col md='6'>
         <Form.Group controlId="formFile" className="mb-3">
-          <Form.Text className='m-1'>Choose Profile Picture</Form.Text>
+          <Form.Text className='m-1'>Choose Profile Picture (JPG)</Form.Text>
           <FileBase64 type="file" multiple={false} onDone={
             file => setNewUser({...newUser, image: file.base64})
           }/>
@@ -121,7 +122,8 @@ const Register = () => {
 
       <Col className='imageColStyle' md='6'>
           <div className='imageContainer'>
-            <Image className='imageStyle' rounded alt='pp' src={newUser.image} />
+            {newUser.image ? <Image className='imageStyle' rounded alt='pp' src={newUser.image} /> : <PersonIcon style={{width: '60px', height: '60px'}}/>}
+            
           </div>
           
       </Col>
