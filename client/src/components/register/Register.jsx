@@ -59,7 +59,6 @@ const Register = () => {
   }
 
    useEffect(() => {
-    console.log(newUser.image)
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       registerUser(newUser).then((result)=>{
         setRegisterResult(result.data)
@@ -123,7 +122,6 @@ const Register = () => {
       <Col className='imageColStyle' md='6'>
           <div className='imageContainer'>
             {newUser.image ? <Image className='imageStyle' rounded alt='pp' src={newUser.image} /> : <PersonIcon style={{width: '60px', height: '60px'}}/>}
-            
           </div>
           
       </Col>
