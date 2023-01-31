@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button';
 import SystemImage from '../../assets/SystemImage.png'
 import { Outlet } from 'react-router-dom';
 
-const NavbarOne = () => {
+const NavbarOne = ({currentUser}) => {
   return (
     <div>
         <Navbar bg="dark" variant="dark">
@@ -21,10 +21,11 @@ const NavbarOne = () => {
                 className="d-inline-block align-top"
               />
               {' '}
-              LOGIN SYSTEM
+              {currentUser ? "Welcome " + currentUser.username : "LOGIN SYSTEM"}
             </Navbar.Brand>
+
+            {currentUser && <Button variant="outline-light">Logout</Button>}
             
-            <Button variant="outline-light">Login</Button>
           </Container>
       </Navbar>
       <Outlet/>

@@ -17,6 +17,8 @@ function App() {
 
   const [toggleLogin, setToggleLoign] = useState(false);
 
+  const [currentUser, setCurrentUser] = useState();
+
   const handleToggleLogin = () => {
     setToggleLoign(!toggleLogin);
   }
@@ -24,13 +26,19 @@ function App() {
   useEffect(()=> {
     getCurrentUser().then((result) => {
       console.log(result.data)
+      if(result.data.role === 'user'){
+        setCurrentUser(result.data.user)
+      }
+      if(result.data.role === 'admin'){
+        setCurrentUser(result.data.admin)
+      }
     })
   }, [toggleLogin] );
 
   const router = createBrowserRouter([
     {
       element: (
-        <NavbarOne/>
+        <NavbarOne currentUser={currentUser}/>
       ),
       children: [
         {
