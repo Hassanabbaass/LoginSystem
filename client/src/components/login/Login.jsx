@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form';
 import './Login.css'
 import { loginUser } from '../../services/Login';
 
-const Login = () => {
+const Login = ({handleToggleLogin}) => {
 
   const [userLoggingIn, setUserLoggingIn] = useState({
     email: "",
@@ -35,6 +35,7 @@ const Login = () => {
     if (Object.keys(formErrors).length === 0 && isSubmit) {
       loginUser(userLoggingIn).then((result)=>{
         console.log(result.data)
+        handleToggleLogin();
       })
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

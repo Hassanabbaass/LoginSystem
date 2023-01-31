@@ -11,7 +11,7 @@ import Login from '../login/Login';
 import Register from '../register/Register';
 
 
-const LoginRegister = () => {
+const LoginRegister = ({handleToggleLogin}) => {
 
   const [radioValue, setRadioValue] = useState('1');
   const radios = [
@@ -33,7 +33,7 @@ const LoginRegister = () => {
               <h4 className="mt-1 mb-5 pb-1">Welcome to LoginSystem</h4>
             </div>
 
-            {radioValue === '1' ? <Login/> : <Register/>}
+            {radioValue === '1' ? <Login handleToggleLogin={handleToggleLogin}/> : <Register/>}
 
           </div>
 
