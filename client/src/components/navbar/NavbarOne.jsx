@@ -2,11 +2,23 @@ import React from 'react'
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-
+import { useNavigate } from "react-router-dom";
 import SystemImage from '../../assets/SystemImage.png'
 import { Outlet } from 'react-router-dom';
+import { LogoutUser } from '../../services/Logout';
 
-const NavbarOne = ({currentUser}) => {
+
+const NavbarOne = ({currentUser, setCurrentUser}) => {
+
+  const nav = useNavigate();
+
+  const handleLogoutUser = () => {
+    setCurrentUser("");
+    LogoutUser().then(
+      nav("/")
+    )
+  }
+
   return (
     <div>
         <Navbar bg="dark" variant="dark">
@@ -24,7 +36,7 @@ const NavbarOne = ({currentUser}) => {
               {currentUser ? "Welcome " + currentUser.username : "LOGIN SYSTEM"}
             </Navbar.Brand>
 
-            {currentUser && <Button variant="outline-light">Logout</Button>}
+            {currentUser && <Button onClick={handleLogoutUser} variant="outline-light">Logout</Button>}
             
           </Container>
       </Navbar>

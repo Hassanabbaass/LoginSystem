@@ -38,7 +38,7 @@ function App() {
   const router = createBrowserRouter([
     {
       element: (
-        <NavbarOne currentUser={currentUser}/>
+        <NavbarOne currentUser={currentUser} setCurrentUser={setCurrentUser}/>
       ),
       children: [
         {
