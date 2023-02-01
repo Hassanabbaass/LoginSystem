@@ -44,7 +44,7 @@ function App() {
         {
           path: "/",
           element: (
-            <LoginRegister handleToggleLogin={handleToggleLogin}/>
+            <LoginRegister handleToggleLogin={handleToggleLogin} currentUser={currentUser}/>
           ),
         },
         {

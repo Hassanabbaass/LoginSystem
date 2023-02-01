@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -9,15 +9,29 @@ import './LoginRegister.css';
 import SystemImage from '../../assets/SystemImage.png'
 import Login from '../login/Login';
 import Register from '../register/Register';
+import { useNavigate } from 'react-router-dom';
 
 
-const LoginRegister = ({handleToggleLogin}) => {
+const LoginRegister = ({handleToggleLogin, currentUser}) => {
 
   const [radioValue, setRadioValue] = useState('1');
   const radios = [
     { name: 'Login', value: '1' },
     { name: 'Register', value: '2' },
   ];
+
+  const nav = useNavigate();
+
+  useEffect(()=>{
+    if(currentUser){
+      if(!currentUser.isAdmin){
+        nav('/user')
+      }
+      else if(currentUser.isAdmin){
+        nav('/admin')
+      }
+    }
+  })
 
   return (
     <Container className="my-1 gradient-form">
