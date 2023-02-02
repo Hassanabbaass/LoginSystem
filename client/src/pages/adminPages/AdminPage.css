@@ -1,0 +1,40 @@
+.h4Style2{
+    margin: 1rem;
+}
+
+.tableDivStyle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 4vw;
+}
+
+.actionTdStyle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.quoteTdStyle{
+    margin: 1rem;
+}
+
+.adminBtnStyle{
+    margin-right: 1vw;
+    margin-bottom: 0.8rem;
+}
+
+.quoteInputDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 4vw;
+}
+
+.formGrpStyle{
+    width: 80%;
+}
+
+.addQuoteBtn{
+    width:30%;
+}
