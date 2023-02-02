@@ -46,7 +46,7 @@ const Register = () => {
     if (values.password !== values.confirmPassword) {
       errors.confirmPassword = "Passwords do not match!"
     }
-    if (values.image.length >= 5000) {
+    if (values.image.length >= 2500) {
       errors.image = "Choose Smaller Image!"
     }
     return errors;
