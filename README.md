@@ -1,2 +1,2 @@
 # LoginSystem
-This is a login system that uses OTP Verification, Jwt Token, Authentication, Reset Password, And Edit Profile
+This is a login system that is all about JWT Token, authentication, verification of user type (admin or user), restriction of paths, CRUD table for admin Only, and more
